@@ -991,7 +991,7 @@
 				$variables = [
 					"siteName" => $GLOBALS["siteName"],
 					"title" => 'Your '.$sldInfo["name"].' registration will expire in '.$daysUntilRenew.' day'.plural($daysUntilRenew),
-					"message" => 'Your domain registration for <b>'.$sldInfo["name"].'</b> will expire in <b>'.$daysUntilRenew.' day'.plural($daysUntilRenew).'</b>. Because you have Auto Renew disabled, have no card on file, or your card on file is expired, you will have to renew this domain manually if you wish to keep it.',
+					"message" => 'Your domain registration for <b>'.$sldInfo["name"].'</b> will expire in <b>'.$daysUntilRenew.' day'.plural($daysUntilRenew).'</b>. Renewal may not be possible due to one of the following reasons: Auto Renew is disabled, there is no card on file, the card on file has expired, or this TLD does not allow renewals. Please check your renewal options manually if you wish to retain this domain.',
 					"content" => '<a href="https://'.$GLOBALS["icannHostname"].'/manage/'.$sldInfo["uuid"].'">Manage my domain</a>'
 				];
 				break;
@@ -1009,7 +1009,7 @@
 				$variables = [
 					"siteName" => $GLOBALS["siteName"],
 					"title" => 'Your '.$sldInfo["name"].' registration has expired.',
-					"message" => 'Your domain registration for <b>'.$sldInfo["name"].'</b> has expired. Your domain is now in a grace period which will end in <b>'.$daysUntilGraceEnd.' day'.plural($daysUntilGraceEnd).'</b>. If you do not renew your domain, it will be deleted and become available for anyone to register.',
+					"message" => 'Your domain registration for <b>'.$sldInfo["name"].'</b> has expired. Your domain is now in a grace period which will end in <b>'.$daysUntilGraceEnd.' day'.plural($daysUntilGraceEnd).'</b>. If you do not renew your domain, it will be deleted and may become available for anyone to register.',
 					"content" => '<a href="https://'.$GLOBALS["icannHostname"].'/manage/'.$sldInfo["uuid"].'">Manage my domain</a>'
 				];
 				break;
@@ -1087,20 +1087,15 @@
 
 	function getContents($url) {
 		$curl = curl_init();
-        curl_setopt($curl, CURLOPT_URL, $url);
-        curl_setopt($curl, CURLOPT_PROXY, "127.0.0.1:8080");
-        curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
-        curl_setopt($curl, CURLOPT_FOLLOWLOCATION, TRUE);
-        curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 5); 
-        curl_setopt($curl, CURLOPT_TIMEOUT, 5);
-
-        curl_setopt($curl, CURLOPT_VERBOSE, true);
-		$fp = fopen('/var/www/html/hshub/errorlog.txt', 'w');
-        curl_setopt($curl, CURLOPT_STDERR, $fp);
-
-        $c = curl_exec($curl);
-        curl_close($curl);
-        return $c;
+		curl_setopt($curl, CURLOPT_URL, $url);
+		curl_setopt($curl, CURLOPT_PROXY, "127.0.0.1:8080");
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, TRUE);
+		curl_setopt($curl, CURLOPT_FOLLOWLOCATION, TRUE);
+		curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 5); 
+		curl_setopt($curl, CURLOPT_TIMEOUT, 5);
+		$c = curl_exec($curl);
+		curl_close($curl);
+		return $c;
 	}
 
 	function fetchAddress($domain, $currency) {

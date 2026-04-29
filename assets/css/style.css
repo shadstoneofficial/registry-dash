@@ -9,6 +9,9 @@
 	--quarteraryBackground: #323232;
 	--quinaryBackground: #222;
 
+	--switchBackground: #323232;
+	--switchForeground: #474748;
+
 	--errorForeground: #fff;
 	--errorBackground: #5d3737;
 
@@ -77,6 +80,9 @@ html[data-theme=light] {
 	--quarteraryBackground: #ddd;
 	--quinaryBackground: #e9e9e9;
 
+	--switchBackground: #ddd;
+	--switchForeground: #ccc;
+
 	--errorForeground: #fff;
 	--errorBackground: #e08686;
 
@@ -104,6 +110,9 @@ html[data-theme=the_shake] {
 	--tertiaryBackground: #8F9099;
 	--quarteraryBackground: #2B2F3F;
 	--quinaryBackground: #1D2132;
+
+	--switchBackground: #2B2F3F;
+	--switchForeground: #8F9099;
 
 	--errorForeground: #fff;
 	--errorBackground: #c23f3f;
@@ -134,6 +143,9 @@ html[data-theme=black] {
 	--quarteraryBackground: #222;
 	--quinaryBackground: #070707;
 
+	--switchBackground: #222;
+	--switchForeground: #3f3f3f;
+
 	--errorForeground: #fff;
 	--errorBackground: #db4437;
 
@@ -150,10 +162,67 @@ html[data-theme=black] {
 	--borderColorAlt: #181818;
 }
 
+/* ShakeStation */
+html[data-theme=shakestation] {
+	--themeColor: #94f9c3;
+	--themeColorAlt: #94f9c3aa;
+
+	--primaryBackground: linear-gradient(180deg, #2d2d2d 0%, #2d2d2d 70px, #000 100%);
+	--secondaryBackground: #2D2D2D;
+	--tertiaryBackground: transparent;
+	--quarteraryBackground: transparent;
+	--quinaryBackground: #2D2D2D;
+
+	--buttonForeground: #000;
+	--buttonBackground: var(--themeColor);
+
+	--borderColor: #555;
+}
+
+html[data-theme=shakestation] * {
+	border: none;
+}
+
+html[data-theme=shakestation] .header {
+	border-bottom: 1px solid var(--borderColor);
+}
+
+html[data-theme=shakestation] .main .body .box {
+	background: transparent;
+	padding-left: 10px;
+	padding-right: 10px;
+	border: none;
+}
+
+html[data-theme=shakestation] input, html[data-theme=shakestation] select, html[data-theme=shakestation] textarea {
+	background-color: transparent;
+}
+
+html[data-theme=shakestation] .main .menu .item .icon {
+	background-color: var(--primaryForeground);
+}
+html[data-theme=shakestation] .main .menu .item.current .icon {
+	background-color: var(--themeColor);
+}
+
+html[data-theme=shakestation] .popover {
+	background-color: #282828;
+}
+
+html[data-theme=shakestation] #createZoneTable tr, html[data-theme=shakestation] #searchDomainsTable tr {
+	background-color: var(--secondaryBackground);
+}
+
+html[data-theme=shakestation] .main[data-page=apidocs] .body .section .title {
+	margin: 0px 10px 10px 10px;
+}
+
+/* Black */
 html[data-theme=black] .main .menu .item:hover {
 	background-color: var(--tertiaryBackground);
 }
 
+/* The Shake */
 html[data-theme=the_shake] .separator {
 	background: transparent;
 	border-top: 1px dotted var(--tertiaryBackground);
@@ -235,6 +304,10 @@ html[data-theme=the_shake] .header select {
 	color: var(--secondaryForeground);
 }
 
+body:not(.stripe) .autoRenew {
+	display: none !important;
+}
+
 .select, pre, code {
 	-webkit-user-select: text;
 	-moz-user-select: text;
@@ -247,7 +320,7 @@ pre {
 
 html {
 	color: var(--primaryForeground);
-	background-color: var(--primaryBackground);
+	background: var(--primaryBackground);
 }
 html, body {
 	height: 100%;
@@ -1391,10 +1464,10 @@ input[name=domain][readonly] {
 	display: flex;
 }
 .cl-switch .switcher {
-	background-color: var(--quarteraryBackground) !important;
+	background-color: var(--switchBackground) !important;
 }
 .cl-switch .switcher:before {
-	background-color: var(--tertiaryBackground) !important;
+	background-color: var(--switchForeground) !important;
 }
 .custom input[type="checkbox"]:checked + .switcher {
 	background-color: var(--themeColorAlt) !important;
@@ -1403,10 +1476,10 @@ input[name=domain][readonly] {
 	background-color: var(--themeColor) !important;
 }
 div .cl-switch [disabled]:not([disabled="false"]) + .switcher {
-	background-color: var(--quarteraryBackground) !important;
+	background-color: var(--switchBackground) !important;
 }
 div .cl-switch [disabled]:not([disabled="false"]) + .switcher:before {
-	background-color: var(--tertiaryBackground) !important;
+	background-color: var(--switchForeground) !important;
 }
 .row[data-live=false] .cl-switch .switcher {
 	cursor: not-allowed !important;
